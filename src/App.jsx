@@ -31,21 +31,22 @@ function App() {
       newValues = [];
 
     parsedValues.forEach((value) => {
+      const timeString = `${hours.toString().padStart(2, "0")}:${minutes
+        .toString()
+        .padStart(2, "0")}`;
+      newTimes.push(timeString);
+
+      // Replace 'null' with '0'
+      const finalValue = value === "null" ? "0" : value;
+      const formattedValue = appendPercent ? `${finalValue}%` : finalValue;
+      newValues.push(formattedValue);
+
+      sum += isNaN(finalValue) ? 0 : Number(finalValue);
+
       minutes += 5;
       if (minutes >= 60) {
         hours++;
         minutes -= 60;
-      }
-
-      // Skipping 'null' values
-      if (value !== "null") {
-        const timeString = `${hours.toString().padStart(2, "0")}:${minutes
-          .toString()
-          .padStart(2, "0")}`;
-        newTimes.push(timeString);
-        const formattedValue = appendPercent ? `${value}%` : value;
-        newValues.push(formattedValue);
-        sum += isNaN(value) ? 0 : Number(value);
       }
     });
 
@@ -68,8 +69,7 @@ function App() {
 
   return (
     <div className="App">
-       <div style={{marginBottom: 10}}>Total: {total}</div>
-
+      <div style={{marginBottom: 10}}>Total: {total}</div>
       <textarea
         value={inputValues}
         onChange={handleInputChange}
@@ -107,7 +107,6 @@ function App() {
           ))}
         </div>
       </div>
-
     </div>
   );
 }
