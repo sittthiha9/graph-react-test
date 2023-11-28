@@ -68,6 +68,8 @@ function App() {
 
   return (
     <div className="App">
+       <div style={{marginBottom: 10}}>Total: {total}</div>
+
       <textarea
         value={inputValues}
         onChange={handleInputChange}
@@ -106,7 +108,6 @@ function App() {
         </div>
       </div>
 
-      <div>Total: {total}</div>
     </div>
   );
 }
