@@ -69,21 +69,29 @@ function App() {
 
   return (
     <div className="App">
-      <div style={{marginBottom: 10}}>Total: {total}</div>
+      <div
+        style={{
+          flexDirection: "row",
+          display: "flex",
+          justifyContent: "space-around",
+        }}
+      >
+        <div>
+          <input
+            type="checkbox"
+            id="appendPercent"
+            checked={appendPercent}
+            onChange={handleCheckboxChange}
+          />
+          <label htmlFor="appendPercent">Append % to values</label>
+        </div>
+        <div style={{ marginBottom: 10 }}>Total: {total}</div>
+      </div>
       <textarea
         value={inputValues}
         onChange={handleInputChange}
         placeholder="Enter values separated by commas or in an array format"
       />
-      <div>
-        <input
-          type="checkbox"
-          id="appendPercent"
-          checked={appendPercent}
-          onChange={handleCheckboxChange}
-        />
-        <label htmlFor="appendPercent">Append % to values</label>
-      </div>
       <button onClick={generateTimeValues}>Generate Time Values</button>
       <button onClick={copyTimesToClipboard}>Copy Times</button>
       <button onClick={copyValuesToClipboard}>Copy Values</button>
